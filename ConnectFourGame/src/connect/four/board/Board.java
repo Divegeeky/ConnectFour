@@ -1,4 +1,3 @@
-
 package connect.four.board;
 
 import connect.four.player.Player;
@@ -8,16 +7,6 @@ public class Board implements ReadWritableBoard {
     private Player[][] m_contents;
     private int m_moveCount;
     
-    public Player mContents(int x, int y) {
-    	return m_contents[x][y];
-    }
-    public
-    public int getM_moveCount() {
-		return m_moveCount;
-	}
-	public void setM_moveCount(int m_moveCount) {
-		this.m_moveCount = m_moveCount;
-	}
 	public Board(int width, int height) {
     	if(width < 0)
     	{
@@ -35,12 +24,12 @@ public class Board implements ReadWritableBoard {
     public Board(ReadableBoard copy) {
         if (copy instanceof Board) {
         	Board copyB = (Board) copy;
-            m_moveCount = copyB.m_moveCount;
-            int l = copyB.m_contents.length;
-            int m = copyB.m_contents[0].length;
+            m_moveCount = copyB.getMoveCount();
+            int l = copyB.getWidth();
+            int m = copyB.getHeight();
             m_contents = new Player[l][m];
             for (int i = 0; i != l; ++i) {
-                m_contents[i] = Arrays.copyOf(copyB.m_contents[i], m);
+                m_contents[i] = Arrays.copyOf(copyB.mContentsArray(i), m);
             }
         } else {
         	int l = copy.getWidth();
@@ -96,5 +85,11 @@ public class Board implements ReadWritableBoard {
     }
     public @Override int getMoveCount() {
         return m_moveCount;
+    }
+    public Player mContentsPlayer(int x, int y) {
+    	return m_contents[x][y];
+    }
+    public Player[] mContentsArray(int x) {
+    	return m_contents[x];
     }
 }
