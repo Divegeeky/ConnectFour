@@ -5,15 +5,36 @@ import connect.four.player.Player;
 import java.util.Arrays;
 
 public class Board implements ReadWritableBoard {
-    Player[][] m_contents;
-    int m_moveCount;
-    public Board(int width, int height) {
-        m_contents = new Player[width][height];
+    private Player[][] m_contents;
+    private int m_moveCount;
+    
+    public Player mContents(int x, int y) {
+    	return m_contents[x][y];
+    }
+    public
+    public int getM_moveCount() {
+		return m_moveCount;
+	}
+	public void setM_moveCount(int m_moveCount) {
+		this.m_moveCount = m_moveCount;
+	}
+	public Board(int width, int height) {
+    	if(width < 0)
+    	{
+    		throw new NegativeArraySizeException("The width was negative. Please enter a number >= 0");
+    	}
+    	else if(height < 0){
+    		throw new NegativeArraySizeException("The height was negative. Please enter a number >= 0");
+    	}
+    	else
+    	{
+    		m_contents = new Player[width][height];
+    	}
         m_moveCount = 0;
     }
     public Board(ReadableBoard copy) {
         if (copy instanceof Board) {
-            Board copyB = (Board) copy;
+        	Board copyB = (Board) copy;
             m_moveCount = copyB.m_moveCount;
             int l = copyB.m_contents.length;
             int m = copyB.m_contents[0].length;
@@ -22,7 +43,7 @@ public class Board implements ReadWritableBoard {
                 m_contents[i] = Arrays.copyOf(copyB.m_contents[i], m);
             }
         } else {
-            int l = copy.getWidth();
+        	int l = copy.getWidth();
             int m = copy.getHeight();
             m_contents = new Player[l][m];
             m_moveCount = copy.getMoveCount();
@@ -34,7 +55,11 @@ public class Board implements ReadWritableBoard {
         }
     }
     public @Override Player whoPlayed(int x, int y) {
-        return m_contents[x][y];
+    	if(x < 0 || x > (getWidth()-1) || y < 0 || y > (getHeight()-1)){
+    		return null;
+    	}
+    	else
+    		return m_contents[x][y];
     }
     public @Override int getWidth() {
         return m_contents.length;
@@ -54,8 +79,10 @@ public class Board implements ReadWritableBoard {
     public @Override int getColumnHeight(int x){
         int y = 0;
 	int l = m_contents[0].length;
-        while (y != l && m_contents[x][y] != null) {
-            y += 1;
+        for(int i = 0; i < l; i++) {
+        	if(m_contents[x][i] != null) {
+        		y += 1;
+        	}
         }
         return y;
     }
