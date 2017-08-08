@@ -25,23 +25,23 @@ public class GUIPiece extends JLabel{
 		setSize(145,145);
 		setOpaque(false);
 		setText("");
-		ImageIcon redIcon = new ImageIcon(getClass().getResource("/red_glow/glow1.png"));
-		ImageIcon blueIcon = new ImageIcon(getClass().getResource("/blue_glow/glow1.png"));
+		ImageIcon redIcon = new ImageIcon(getClass().getResource("/Images/red_glow/glow1.png"));
+		ImageIcon blueIcon = new ImageIcon(getClass().getResource("/Images/blue_glow/glow1.png"));
 		if(playerNum == 0){
 			setIcon(redIcon);
 			glowNum = 0;
-			glow1 = new ImageIcon(getClass().getResource("/red_glow/glow1.png"));
-			glow2 = new ImageIcon(getClass().getResource("/red_glow/glow2.png"));
-			glow3 = new ImageIcon(getClass().getResource("/red_glow/glow3.png"));
-			glow4 = new ImageIcon(getClass().getResource("/red_glow/glow4.png"));
+			glow1 = new ImageIcon(getClass().getResource("/Images/red_glow/glow1.png"));
+			glow2 = new ImageIcon(getClass().getResource("/Images/red_glow/glow2.png"));
+			glow3 = new ImageIcon(getClass().getResource("/Images/red_glow/glow3.png"));
+			glow4 = new ImageIcon(getClass().getResource("/Images/red_glow/glow4.png"));
 		}
 		else{
 			setIcon(blueIcon);
 			glowNum = 1;
-			glow1 = new ImageIcon(getClass().getResource("/blue_glow/glow1.png"));
-			glow2 = new ImageIcon(getClass().getResource("/blue_glow/glow2.png"));
-			glow3 = new ImageIcon(getClass().getResource("/blue_glow/glow3.png"));
-			glow4 = new ImageIcon(getClass().getResource("/blue_glow/glow4.png"));
+			glow1 = new ImageIcon(getClass().getResource("/Images/blue_glow/glow1.png"));
+			glow2 = new ImageIcon(getClass().getResource("/Images/blue_glow/glow2.png"));
+			glow3 = new ImageIcon(getClass().getResource("/Images/blue_glow/glow3.png"));
+			glow4 = new ImageIcon(getClass().getResource("/Images/blue_glow/glow4.png"));
 		}
 		
 		glowing = new ImageIcon[] {glow1, glow2, glow3, glow4, glow3, glow2};
