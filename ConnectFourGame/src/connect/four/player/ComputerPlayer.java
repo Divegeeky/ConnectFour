@@ -21,7 +21,7 @@ public class ComputerPlayer implements Player {
         return "Computer";
     }
 
-    @Override public void performPlay(ReadWritableBoard board) {
+    @Override public void performPlay(ReadWritableBoard board) throws FirstMoveException {
         int l = board.getWidth();
 	int m = board.getHeight();
         if (board.getMoveCount() == 0) {
@@ -57,14 +57,17 @@ public class ComputerPlayer implements Player {
         long score = 0;
         if (Game.detectWinner(myMove, 4) == this) {
             score += Math.pow(l, depth);
-        } else if (depth != 0) {
+        } 
+        else if (depth != 0) {
+        	Board nextMove;
             for (int i = 0; i != l; ++i) {
                 if (myMove.whoPlayed(i, m-1) != null) continue;
-                Board nextMove = new Board(myMove);
+                nextMove = new Board(myMove);
                 nextMove.play(i, opponent);
                 if (Game.detectWinner(nextMove, 4) == opponent) {
 		    score -= Math.pow(l, depth-1);
-		} else {
+		} 
+               else {
                     for (int j = 0; j != l; ++j) {
                         score += scoreMove(j, depth - 2, nextMove, opponent);
                     }
@@ -74,7 +77,7 @@ public class ComputerPlayer implements Player {
         return score;
     }
 
-    private Player getOpponent(ReadableBoard board) {
+    private Player getOpponent(ReadableBoard board) throws FirstMoveException {
         int l = board.getWidth();
         int m = board.getHeight();
         for (int i = 0; i != l; ++i) {
@@ -85,7 +88,15 @@ public class ComputerPlayer implements Player {
                 }
             }
         }
-        throw new Error("Can't call getOpponent on first turn.");
+        //throw new Error("Can't call getOpponent on first turn.");
+        throw new FirstMoveException("Can't call getOpponent on first turn.");
+    }
+    public class FirstMoveException extends Exception {
+    	private static final long serialVersionUID = 1L;
+    	public FirstMoveException(String message)
+    	{
+    		super(message);
+    	}
     }
 
 }
