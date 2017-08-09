@@ -84,7 +84,12 @@ public class GUIWrapperPlayer implements Player {
 		};
 		(new Thread() {
 			public void run() {
-				player.performPlay(wrapperBoard);
+				try {
+					player.performPlay(wrapperBoard);
+				}
+				catch(Exception e) {
+					System.out.println("Hit a FirstMoveException");
+				}
 			}
 		}).start();
 		
