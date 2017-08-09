@@ -93,7 +93,12 @@ public class Game implements ScoreChart {
 		return m_board.getMoveCount();
 	    }
         };
-        m_players[player].performPlay(controlledBoard);
+        try {
+        	m_players[player].performPlay(controlledBoard);
+        }
+        catch(Exception e) {
+        	System.out.println(e.toString());
+        }
     }
     
     public Player getCurrentPlayer(){
