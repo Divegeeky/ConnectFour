@@ -271,8 +271,8 @@ public class GamePanel extends javax.swing.JPanel implements ScoreChart.Listener
 		add(topGlass);
 		topGlass.setBounds(0, 0, 1280, 800);
 
-		bgImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Images/board.png"))); // NOI18N
-		bgImage.setText("jLabel1");
+
+		bgImage.setText("jLabel1");		bgImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/board.png"))); // NOI18N
 		bgImage.setIgnoreRepaint(true);
 		add(bgImage);
 		bgImage.setBounds(0, 150, 1070, 590);
