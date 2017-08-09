@@ -4,7 +4,11 @@ package connect.four.player;
 import connect.four.board.ReadWritableBoard;
 import java.util.Random;
 
-
+/**
+ * This class is not used for the GUI
+ * @author SER 216 Team 8
+ *
+ */
 public class RandomPlayer implements Player {
     @Override
     public String getName() {
